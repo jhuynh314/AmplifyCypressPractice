@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "cypress": "^15.7.1",
+    "cypress-mochawesome-reporter": "^4.0.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "cypress-tags": "^1.2.2"
+  }
+}
