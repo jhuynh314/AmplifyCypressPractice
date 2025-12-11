@@ -1,9 +1,9 @@
 // cypress/plugins/index.js
-const tagify = require('cypress-tags');
+import tagify from 'cypress-tags';
 
 /**
  * @type {Cypress.PluginConfig}
  */
-module.exports = (on, config) => {
+export default (on, config) => {
   on('file:preprocessor', tagify(config));
 };
