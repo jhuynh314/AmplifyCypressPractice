@@ -1,0 +1,26 @@
+[
+    {
+        "buttonName": "Graphing",
+        "url": "https://www.desmos.com/calculator"
+    },
+    {
+        "buttonName": "Scientific",
+        "url": "https://www.desmos.com/scientific"
+    },
+    {
+        "buttonName": "Four Function",
+        "url": "https://www.desmos.com/fourfunction"
+    },
+    {
+        "buttonName": "Matrix",
+        "url": "https://www.desmos.com/matrix"
+    },
+    {
+        "buttonName": "Geometry",
+        "url": "https://www.desmos.com/geometry"
+    },
+    {
+        "buttonName": "3D",
+        "url": "https://www.desmos.com/3d"
+    }
+]
