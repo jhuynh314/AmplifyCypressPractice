@@ -1,18 +1,18 @@
 /// <reference types="cypress" />
 
 import { LandingPage } from "../support/LandingPage";
-
+import { Toolbar } from "../support/toolbar";
 
 describe('Desmos home page tests', () => {
 
   let landingPage: LandingPage;
 
   beforeEach(() => {
-    cy.visit('www.desmos.com');
+    cy.visit('https://www.desmos.com/');
     landingPage = new LandingPage();
   });
 
-  it('page setup', () => {
+  it('Verify page setup', () => {
     landingPage.getAnnouncement().should('have.text', " The 2025 Art Contest is open for submissions! Learn more. ");
 
     const topBanner = landingPage.getTopBanner();
@@ -52,6 +52,49 @@ describe('Desmos home page tests', () => {
     landingPage.getArtContestSection();
   });
 
+  it('Verify Toolbar', () => {
+    const toolbar = new Toolbar();
+    toolbar.getHomeButton().should('exist');
+    
+    // Math Tools Dropdown
+    const mathTools = toolbar.getMathTools();
+    const tools = ["Graphing Calculator", "Scientific Calculator", "Four-Function Calculator", "Test Practice", "Matrix Calculator", "Geometry Tool", "3D Calculator"];
+    mathTools.getElement().click();
+    mathTools.getAllOptions().should('have.length', tools.length + 1); // +1 to account for app store message
+    tools.forEach(tool => {
+      mathTools.getAllOptions().contains(tool).should('exist');
+    });
+
+
+    // Resources Dropdown
+    const resources = toolbar.getResources();
+    const resourceOptions = ["About Us", "Careers", "Help Center", "Accessibility", "Assessments", "Guiding Principles", "Design Principles", "Des-Blog"];
+    resources.getElement().click();
+    resources.getAllOptions().should('have.length', resourceOptions.length);
+    resourceOptions.forEach(option => {
+      resources.getAllOptions().contains(option).should('exist');
+    });
+
+
+    // Partnerships
+    const partnerships = toolbar.getPartnerships();
+    const partnershipOptions = ["Desmos For Work", "Education Partnerships", "API Documentation"];
+    partnerships.getElement().click();
+    partnerships.getAllOptions().should('have.length', partnershipOptions.length);
+    partnershipOptions.forEach(option => {
+      partnerships.getAllOptions().contains(option).should('exist');
+    });
+    partnerships.getElement().click();
+
+    toolbar.getLogInButton().should('exist');
+    toolbar.getSignUpButton().should('exist');
+
+    const languages = toolbar.getLanguages();
+    languages.getElement().click();
+    languages.getAllOptions().should('have.length', 20);
+
+  });
+
   it('Verify Math Tools Navigation', () => {
     interface ToolsData {
       buttonName: string,
@@ -65,5 +108,5 @@ describe('Desmos home page tests', () => {
         cy.go('back');
       });
     });
-  })
+  });
 });
